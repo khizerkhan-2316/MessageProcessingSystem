@@ -9,6 +9,33 @@ services:
       - "1433:1433"
     volumes:
       - mssql-data:/var/opt/mssql
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: message-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+  producer:
+    build:
+      context: .
+      dockerfile: src/MessageProcessingSystem.Producer/Dockerfile
+    container_name: message-producer
+    depends_on:
+      - rabbitmq
 
+  consumer:
+    build:
+      context: .
+      dockerfile: src/MessageProcessingSystem.Consumer/Dockerfile
+    container_name: message-consumer
+    depends_on:
+      - rabbitmq
+      - mssql
 volumes:
   mssql-data:
+  rabbitmq-data:
