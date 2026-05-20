@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Consumer", "MessageProcessingSystem.Consumer\MessageProcessingSystem.Consumer.csproj", "{8ADF3621-8906-4C7C-9669-B51D325BAE4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Tests", "MessageProcessingSystem.Tests\MessageProcessingSystem.Tests.csproj", "{D614965A-4BA8-45A7-8F06-99317C4F85D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{8ADF3621-8906-4C7C-9669-B51D325BAE4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8ADF3621-8906-4C7C-9669-B51D325BAE4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8ADF3621-8906-4C7C-9669-B51D325BAE4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D614965A-4BA8-45A7-8F06-99317C4F85D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D614965A-4BA8-45A7-8F06-99317C4F85D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D614965A-4BA8-45A7-8F06-99317C4F85D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D614965A-4BA8-45A7-8F06-99317C4F85D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,5 +43,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FCDCE547-8B3B-40B1-A306-B31D6897824B} = {957B276F-537B-47F3-B165-E7ACDEF7E6DA}
 		{8ADF3621-8906-4C7C-9669-B51D325BAE4E} = {957B276F-537B-47F3-B165-E7ACDEF7E6DA}
+		{D614965A-4BA8-45A7-8F06-99317C4F85D8} = {E48C7092-0C89-44B6-8629-CA7C161F3ACE}
 	EndGlobalSection
 EndGlobal
