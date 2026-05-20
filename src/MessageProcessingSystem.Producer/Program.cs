@@ -1,10 +1,16 @@
-﻿namespace MessageProcessingSystem.Producer
+﻿namespace MessageProcessingSystem.Producer;
+
+internal class Program
 {
-	internal class Program
+	static async Task Main(string[] args)
 	{
-		static void Main(string[] args)
+		Console.WriteLine("Producer started");
+
+		while (true)
 		{
-			Console.WriteLine("Hello, World!");
+			Console.WriteLine($"Producing message at {DateTime.UtcNow}");
+
+			await Task.Delay(2000);
 		}
 	}
 }
