@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E48C7092
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E2A180DA-5E87-491D-8870-BE5EDD5E0A46}"
 	ProjectSection(SolutionItems) = preProject
+		.env = .env
+		.gitignore = .gitignore
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
@@ -16,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Producer", "src\MessageProcessingSystem.Producer\MessageProcessingSystem.Producer.csproj", "{98DAF0DA-E03D-4892-966E-968DAFE24265}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Tests", "MessageProcessingSystem.Tests\MessageProcessingSystem.Tests.csproj", "{28157772-0043-4490-BF7C-A9965FBE3249}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Tests", "tests\MessageProcessingSystem.Tests\MessageProcessingSystem.Tests.csproj", "{81113E64-E7E3-46D5-8D59-6EC953AE7248}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,10 +34,10 @@ Global
 		{98DAF0DA-E03D-4892-966E-968DAFE24265}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98DAF0DA-E03D-4892-966E-968DAFE24265}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98DAF0DA-E03D-4892-966E-968DAFE24265}.Release|Any CPU.Build.0 = Release|Any CPU
-		{28157772-0043-4490-BF7C-A9965FBE3249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28157772-0043-4490-BF7C-A9965FBE3249}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28157772-0043-4490-BF7C-A9965FBE3249}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28157772-0043-4490-BF7C-A9965FBE3249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81113E64-E7E3-46D5-8D59-6EC953AE7248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81113E64-E7E3-46D5-8D59-6EC953AE7248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81113E64-E7E3-46D5-8D59-6EC953AE7248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81113E64-E7E3-46D5-8D59-6EC953AE7248}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +45,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CD7A628B-AAF9-4131-B956-FC70A86A52E9} = {957B276F-537B-47F3-B165-E7ACDEF7E6DA}
 		{98DAF0DA-E03D-4892-966E-968DAFE24265} = {957B276F-537B-47F3-B165-E7ACDEF7E6DA}
-		{28157772-0043-4490-BF7C-A9965FBE3249} = {E48C7092-0C89-44B6-8629-CA7C161F3ACE}
+		{81113E64-E7E3-46D5-8D59-6EC953AE7248} = {E48C7092-0C89-44B6-8629-CA7C161F3ACE}
 	EndGlobalSection
 EndGlobal
