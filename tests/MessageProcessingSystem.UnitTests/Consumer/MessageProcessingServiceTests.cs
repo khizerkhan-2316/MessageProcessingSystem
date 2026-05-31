@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MessageProcessingSystem.UnitTests.Consumer
 {
-	internal class MessageProcessingServiceTests
-	{
-	}
+    internal class MessageProcessingServiceTests
+    {
+    }
 }

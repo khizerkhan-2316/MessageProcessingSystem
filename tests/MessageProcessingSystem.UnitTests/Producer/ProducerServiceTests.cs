@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MessageProcessingSystem.Tests.UnitTests.Producer
 {
-	internal class ProducerServiceTests
-	{
-	}
+    internal class ProducerServiceTests
+    {
+    }
 }

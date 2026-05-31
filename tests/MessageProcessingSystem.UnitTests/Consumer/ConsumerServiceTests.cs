@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace MessageProcessingSystem.UnitTests.Consumer
 {
-	public class ConsumerServiceTests
-	{
-		[SetUp]
-		public void Setup()
-		{
-		}
+    public class ConsumerServiceTests
+    {
+        [SetUp]
+        public void Setup()
+        {
+        }
 
-		[Test]
-		public void Test1()
-		{
-			Assert.Pass();
-		}
-	}
+        [Test]
+        public void Test1()
+        {
+            Assert.Pass();
+        }
+    }
 }
