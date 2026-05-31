@@ -2,15 +2,15 @@
 
 internal class Program
 {
-	static async Task Main(string[] args)
-	{
-		Console.WriteLine("Producer started");
+    static async Task Main(string[] args)
+    {
+        Console.WriteLine("Producer started");
 
-		while (true)
-		{
-			Console.WriteLine($"Producing message at {DateTime.UtcNow}");
+        while (true)
+        {
+            Console.WriteLine($"Producing message at {DateTime.UtcNow}");
 
-			await Task.Delay(2000);
-		}
-	}
+            await Task.Delay(2000);
+        }
+    }
 }
