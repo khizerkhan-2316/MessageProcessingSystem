@@ -18,15 +18,28 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq
+
   producer:
     build:
       context: .
       dockerfile: src/MessageProcessingSystem.Producer/Dockerfile
     container_name: message-producer
     depends_on:
-      - rabbitmq
+      rabbitmq:
+          condition: service_healthy
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_QUEUE: message_queue
+      RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
 
   consumer:
     build:
@@ -36,6 +49,13 @@ services:
     depends_on:
       - rabbitmq
       - mssql
+    environment: 
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_QUEUE: message_queue
+      RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
+
 volumes:
   mssql-data:
   rabbitmq-data:
