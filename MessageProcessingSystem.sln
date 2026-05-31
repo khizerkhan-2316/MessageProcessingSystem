@@ -11,16 +11,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.env = .env
 		.gitignore = .gitignore
+		.github\workflows\ci.yml = .github\workflows\ci.yml
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Consumer", "src\MessageProcessingSystem.Consumer\MessageProcessingSystem.Consumer.csproj", "{CD7A628B-AAF9-4131-B956-FC70A86A52E9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E4D483B0-5DB3-498B-A252-A9FF186388F2} = {E4D483B0-5DB3-498B-A252-A9FF186388F2}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Producer", "src\MessageProcessingSystem.Producer\MessageProcessingSystem.Producer.csproj", "{98DAF0DA-E03D-4892-966E-968DAFE24265}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.UnitTests", "tests\MessageProcessingSystem.UnitTests\MessageProcessingSystem.UnitTests.csproj", "{81113E64-E7E3-46D5-8D59-6EC953AE7248}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Shared", "src\MessageProcessingSystem.Shared\MessageProcessingSystem.Shared.csproj", "{E4D483B0-5DB3-498B-A252-A9FF186388F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.UnitTests", "tests\MessageProcessingSystem.UnitTests\MessageProcessingSystem.UnitTests.csproj", "{D1295F84-A492-4F78-886A-59CA7344BE62}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E4D483B0-5DB3-498B-A252-A9FF186388F2} = {E4D483B0-5DB3-498B-A252-A9FF186388F2}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,14 +43,14 @@ Global
 		{98DAF0DA-E03D-4892-966E-968DAFE24265}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98DAF0DA-E03D-4892-966E-968DAFE24265}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98DAF0DA-E03D-4892-966E-968DAFE24265}.Release|Any CPU.Build.0 = Release|Any CPU
-		{81113E64-E7E3-46D5-8D59-6EC953AE7248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{81113E64-E7E3-46D5-8D59-6EC953AE7248}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{81113E64-E7E3-46D5-8D59-6EC953AE7248}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{81113E64-E7E3-46D5-8D59-6EC953AE7248}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E4D483B0-5DB3-498B-A252-A9FF186388F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E4D483B0-5DB3-498B-A252-A9FF186388F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4D483B0-5DB3-498B-A252-A9FF186388F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4D483B0-5DB3-498B-A252-A9FF186388F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1295F84-A492-4F78-886A-59CA7344BE62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1295F84-A492-4F78-886A-59CA7344BE62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1295F84-A492-4F78-886A-59CA7344BE62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1295F84-A492-4F78-886A-59CA7344BE62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,7 +58,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CD7A628B-AAF9-4131-B956-FC70A86A52E9} = {957B276F-537B-47F3-B165-E7ACDEF7E6DA}
 		{98DAF0DA-E03D-4892-966E-968DAFE24265} = {957B276F-537B-47F3-B165-E7ACDEF7E6DA}
-		{81113E64-E7E3-46D5-8D59-6EC953AE7248} = {E48C7092-0C89-44B6-8629-CA7C161F3ACE}
 		{E4D483B0-5DB3-498B-A252-A9FF186388F2} = {957B276F-537B-47F3-B165-E7ACDEF7E6DA}
+		{D1295F84-A492-4F78-886A-59CA7344BE62} = {E48C7092-0C89-44B6-8629-CA7C161F3ACE}
 	EndGlobalSection
 EndGlobal

@@ -18,6 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\MessageProcessingSystem.Producer\MessageProcessingSystem.Producer.csproj" />
+    <ProjectReference Include="..\..\src\MessageProcessingSystem.Shared\MessageProcessingSystem.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 
