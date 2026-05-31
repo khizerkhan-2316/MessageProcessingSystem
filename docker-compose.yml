@@ -9,6 +9,7 @@ services:
       - "1433:1433"
     volumes:
       - mssql-data:/var/opt/mssql
+
   rabbitmq:
     image: rabbitmq:4-management
     container_name: message-rabbitmq
@@ -20,6 +21,7 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq
+
   producer:
     build:
       context: .
@@ -27,6 +29,11 @@ services:
     container_name: message-producer
     depends_on:
       - rabbitmq
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_QUEUE: messages
+      RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
 
   consumer:
     build:
@@ -36,6 +43,13 @@ services:
     depends_on:
       - rabbitmq
       - mssql
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_QUEUE: messages
+      RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
+      DATABASE_CONNECTION_STRING: "Server=mssql,1433;Database=MessageProcessingSystem;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True;"
+
 volumes:
   mssql-data:
   rabbitmq-data:
