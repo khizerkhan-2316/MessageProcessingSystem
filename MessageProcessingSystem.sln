@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Producer", "src\MessageProcessingSystem.Producer\MessageProcessingSystem.Producer.csproj", "{98DAF0DA-E03D-4892-966E-968DAFE24265}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Tests", "tests\MessageProcessingSystem.Tests\MessageProcessingSystem.Tests.csproj", "{81113E64-E7E3-46D5-8D59-6EC953AE7248}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.UnitTests", "tests\MessageProcessingSystem.UnitTests\MessageProcessingSystem.UnitTests.csproj", "{81113E64-E7E3-46D5-8D59-6EC953AE7248}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageProcessingSystem.Shared", "src\MessageProcessingSystem.Shared\MessageProcessingSystem.Shared.csproj", "{E4D483B0-5DB3-498B-A252-A9FF186388F2}"
 EndProject
