@@ -58,7 +58,7 @@ public class ProducerServiceTests
         }
         catch (TaskCanceledException)
         {
-            // Expected when Task.Delay is cancelled
+
         }
 
         Assert.That(_publisher.PublishedMessages.Count, Is.GreaterThanOrEqualTo(1));
