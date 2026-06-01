@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 var rabbitMqOptions = new RabbitMqOptions
 {
     HostName = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "localhost",
-    QueueName = Environment.GetEnvironmentVariable("RABBITMQ_QUEUE") ?? "messages",
+    QueueName = Environment.GetEnvironmentVariable("RABBITMQ_QUEUE") ?? "message_queue",
     UserName = Environment.GetEnvironmentVariable("RABBITMQ_USERNAME") ?? "guest",
     Password = Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD") ?? "guest"
 };
@@ -19,7 +19,7 @@ var rabbitMqOptions = new RabbitMqOptions
 var databaseOptions = new DatabaseOptions
 {
     ConnectionString = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING")
-        ?? "Server=localhost,1433;Database=MessageProcessingSystem;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;"
+        ?? "Server=message-mssql,1433;Database=MessageProcessingSystem;User Id=sa;Password=Cefemivo+f113;TrustServerCertificate=True;"
 };
 
 var dbContextOptions = new DbContextOptionsBuilder<MessageDbContext>()
@@ -28,8 +28,7 @@ var dbContextOptions = new DbContextOptionsBuilder<MessageDbContext>()
 
 await using var dbContext = new MessageDbContext(dbContextOptions);
 
-// Til skoleprojekt/demo: opretter databasen og tabellerne automatisk hvis de ikke findes.
-// Senere kan I skifte til EF migrations.
+
 await dbContext.Database.EnsureCreatedAsync();
 
 IMessageReceiver messageReceiver = new RabbitMqMessageReceiver(rabbitMqOptions);

@@ -37,14 +37,22 @@ public class MessageProcessingService : IMessageProcessingService
         }
 
         message.Counter++;
+
+        //Here is the question? - Should the timestamp be updated?
+        //because the messages that gets requeded don't get stored in db, as the timestamp is uneven second still.
+        // should it be updated?
+
+        // We update the timestamp on requeue so the message gets a new second value,
+        // allowing it to eventually land on an even second and be stored with counter > 0
+        message.Timestamp = _timeProvider.GetUtcNow().UtcDateTime;
+
         await _messagePublisher.PublishAsync(message);
     }
 
     private bool IsOlderThanOneMinute(Message message)
     {
         var now = _timeProvider.GetUtcNow().UtcDateTime;
-        var timestamp = message.Timestamp.ToUniversalTime();
-
+        var timestamp = DateTime.SpecifyKind(message.Timestamp, DateTimeKind.Utc);
         return now - timestamp > TimeSpan.FromMinutes(1);
     }
 

@@ -20,7 +20,7 @@ internal class Program
         services.AddSingleton(new ProducerOptions
         {
             MinDelayMilliseconds = 1000,
-            MaxDelayMilliseconds = 5000
+            MaxDelayMilliseconds = 2000
         });
 
         services.AddSingleton(new RabbitMqOptions
