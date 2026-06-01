@@ -5,7 +5,7 @@ using MessageProcessingSystem.Consumer.RabbitMq;
 using MessageProcessingSystem.Consumer.Services;
 using MessageProcessingSystem.Shared.Interfaces;
 using MessageProcessingSystem.Shared.Options;
-using MessageProcessingSystem.Shared.RabbitMq;
+using MessageProcessingSystem.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
 
 var rabbitMqOptions = new RabbitMqOptions

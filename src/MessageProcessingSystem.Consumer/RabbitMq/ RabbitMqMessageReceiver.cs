@@ -7,48 +7,90 @@ using RabbitMQ.Client;
 
 namespace MessageProcessingSystem.Consumer.RabbitMq;
 
-public class RabbitMqMessageReceiver : IMessageReceiver
+public class RabbitMqMessageReceiver : IMessageReceiver, IAsyncDisposable
 {
-	private readonly RabbitMqOptions _rabbitMqOptions;
+    private readonly RabbitMqOptions _rabbitMqOptions;
+    private IConnection? _connection;
+    private IChannel? _channel;
 
-	public RabbitMqMessageReceiver(RabbitMqOptions rabbitMqOptions)
-	{
-		_rabbitMqOptions = rabbitMqOptions;
-	}
+    public RabbitMqMessageReceiver(RabbitMqOptions rabbitMqOptions)
+    {
+        _rabbitMqOptions = rabbitMqOptions;
+    }
 
-	public Task<Message?> ReceiveAsync()
-	{
-		var factory = new ConnectionFactory
-		{
-			HostName = _rabbitMqOptions.HostName,
-			UserName = _rabbitMqOptions.UserName,
-			Password = _rabbitMqOptions.Password
-		};
+    public async Task<Message?> ReceiveAsync()
+    {
+        if (_connection is null || _channel is null)
+        {
+            await InitializeAsync();
+        }
 
-		using var connection = factory.CreateConnection();
-		using var channel = connection.CreateModel();
+        var result = await _channel!.BasicGetAsync(
+            queue: _rabbitMqOptions.QueueName,
+            autoAck: true);
 
-		channel.QueueDeclare(
-			queue: _rabbitMqOptions.QueueName,
-			durable: true,
-			exclusive: false,
-			autoDelete: false,
-			arguments: null);
+        if (result is null)
+        {
+            return null;
+        }
 
-		var result = channel.BasicGet(
-			queue: _rabbitMqOptions.QueueName,
-			autoAck: true);
+        var body = result.Body.ToArray();
+        var json = Encoding.UTF8.GetString(body);
 
-		if (result is null)
-		{
-			return Task.FromResult<Message?>(null);
-		}
+        return JsonSerializer.Deserialize<Message>(json);
+    }
 
-		var body = result.Body.ToArray();
-		var json = Encoding.UTF8.GetString(body);
+    private async Task InitializeAsync()
+    {
+        var factory = new ConnectionFactory
+        {
+            HostName = _rabbitMqOptions.HostName,
+            Port = _rabbitMqOptions.Port,
+            UserName = _rabbitMqOptions.UserName,
+            Password = _rabbitMqOptions.Password
+        };
 
-		var message = JsonSerializer.Deserialize<Message>(json);
+        const int maxRetries = 10;
+        const int delayMilliseconds = 3000;
 
-		return Task.FromResult(message);
-	}
+        for (var attempt = 1; attempt <= maxRetries; attempt++)
+        {
+            try
+            {
+                _connection = await factory.CreateConnectionAsync();
+                _channel = await _connection.CreateChannelAsync();
+
+                await _channel.QueueDeclareAsync(
+                    queue: _rabbitMqOptions.QueueName,
+                    durable: true,
+                    exclusive: false,
+                    autoDelete: false);
+
+                Console.WriteLine("Consumer connected to RabbitMQ.");
+                return;
+            }
+            catch (Exception exception) when (attempt < maxRetries)
+            {
+                Console.WriteLine(
+                    $"RabbitMQ not ready. Retrying {attempt}/{maxRetries}... {exception.Message}");
+
+                await Task.Delay(delayMilliseconds);
+            }
+        }
+
+        throw new InvalidOperationException("Could not connect to RabbitMQ after retries.");
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_channel is not null)
+        {
+            await _channel.DisposeAsync();
+        }
+
+        if (_connection is not null)
+        {
+            await _connection.DisposeAsync();
+        }
+    }
 }
